@@ -1,0 +1,11 @@
+library(rvest)
+library(dplyr)
+link<-"https://www.goodreads.com/list/show/10198.Books_With_a_Goodreads_Average_Rating_of_4_5_and_above_and_With_At_Least_100_Ratings"
+web<-read_html(link)
+Name<-web %>% html_nodes(".bookTitle span") %>% html_text()
+View(Name)
+Author<- web %>% html_nodes(".authorName span") %>% html_text()
+View(Author)
+Booksrating<-data.frame(Name,Author)
+View(Booksrating)
+write.csv(Booksrating,"Top Books.csv")
